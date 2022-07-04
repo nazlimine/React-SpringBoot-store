@@ -3,10 +3,29 @@ import React, {Component} from 'react';
 import { Nav, Navbar,Dropdown } from 'rsuite';
 import {Link} from 'react-router-dom';
 import CustomSearch from './search';
+import axios from 'axios';
 import "./assets/styles.scss";
 
 export class NavbarBootstrap extends Component{
 
+    constructor(props){
+        super(props);
+        this.state = {
+            allCategories: []
+        }
+    }
+    componentDidMount(){
+        const headers = {
+            "Content-Type": "application/json",
+            
+            
+          };
+        
+
+        axios.get('http://localhost:8080/categories', { headers })
+        .then(response => {this.setState({ allCategories: response.data });
+        console.log(response)});
+    }
   
     render(){
 
@@ -15,10 +34,7 @@ export class NavbarBootstrap extends Component{
                <Navbar.Brand  href="home"><img src={require("./assets/logo.png")}></img></Navbar.Brand>
                <Nav.Item>
                 <Dropdown title="All Categories">
-                    <Dropdown.Item>Women</Dropdown.Item>
-                    <Dropdown.Item>Men</Dropdown.Item>
-                    <Dropdown.Item>Shoes</Dropdown.Item>
-                    <Dropdown.Item>Electronics</Dropdown.Item>
+                    { this.state.allCategories.map(item => <Dropdown.Item key={item.id}> { item.name} </Dropdown.Item> )}                
                 </Dropdown>
                 </Nav.Item>
                
