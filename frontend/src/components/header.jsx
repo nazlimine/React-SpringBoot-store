@@ -17,11 +17,8 @@ export class NavbarBootstrap extends Component{
     componentDidMount(){
         const headers = {
             "Content-Type": "application/json",
-            
-            
           };
         
-
         axios.get('http://localhost:8080/categories', { headers })
         .then(response => {this.setState({ allCategories: response.data });
         console.log(response)});
