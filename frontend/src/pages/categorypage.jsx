@@ -28,17 +28,14 @@ export class HomePage extends Component{
         return(
             <Container>
                 <Content>
-                    <CustomCarousel></CustomCarousel>
                         <CustomPanel>
                         </CustomPanel>
-                        { this.state.allItems.map(item => 
                         <CustomCard 
-                        key={item.id}
-                        name={item.name}
-                        photo={item.photo}
-                        price={item.price}
-                       >
-                        </CustomCard> )}  
+                            key={item.id}
+                            name={item.name}
+                            photo={item.photo}
+                            price={item.price}> 
+                        </CustomCard>   
                 </Content>
             </Container>
         )

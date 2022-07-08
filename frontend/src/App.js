@@ -3,7 +3,10 @@ import NavbarBootstrap from './components/header';
 import { Container ,Content, Header,Sidebar} from 'rsuite';
 import CustomCarousel from './components/carousel';
 import CustomPanel from './components/panel';
+import CustomCard from './components/card';
+
 import { Routes, Route } from "react-router-dom";
+import HomePage from './pages';
 
 function App() {
   return (
@@ -14,6 +17,7 @@ function App() {
           <NavbarBootstrap></NavbarBootstrap>
         </Header>
         <Routes>
+            <Route path="/"    element={<Home />} />
             <Route path="home" element={<Home />} />
             <Route path="user" element={<User />} />
             <Route path="cart" element={<Cart />} />
@@ -27,13 +31,7 @@ function App() {
 function Home() {
   return (
     <>
-      <Container>
-      <Content>
-        <CustomCarousel></CustomCarousel>
-        <CustomPanel></CustomPanel>
-      </Content>
-
-    </Container>
+      <HomePage></HomePage>
     </>
   );
 }
