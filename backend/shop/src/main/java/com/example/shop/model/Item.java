@@ -3,9 +3,10 @@ package com.example.shop.model;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.List;
 
 @Data
-@Document
+@Document(collection = "items")
 public class Item {
     @Id
     public String id;
@@ -13,16 +14,17 @@ public class Item {
     public Long price;
     public String photo;
     public Integer stock;
-
+    public List<Integer> categories;
     public Item() {
     }
 
-    public Item(String id, String name, Long price, String photo, Integer stock) {
+    public Item(String id, String name, Long price, String photo, Integer stock,List<Integer> categories) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.photo = photo;
         this.stock = stock;
+        this.categories =categories;
     }
 
     public Item(String name, Long price, String photo, Integer stock) {

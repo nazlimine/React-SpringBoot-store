@@ -14,12 +14,5 @@ public class ShopApplication {
 		SpringApplication.run(ShopApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner runner(CategoryRepository categoryRepository){
-		return  args -> {
-			Category category = new Category("Women");
-			categoryRepository.insert(category);
-		};
-	}
 
 }

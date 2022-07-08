@@ -4,18 +4,23 @@ package com.example.shop.model;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.List;
 
 @Data
-@Document
+@Document(collection = "categories")
 public class Category {
     @Id
     private String id;
     private String name;
+    private String categoryId;
+    private List<Integer> subcategoryIds;
 
     public Category(){}
-    public Category(String id, String name) {
+    public Category(String id, String name,String categoryId,List<Integer> subcategoryIds) {
         this.id = id;
         this.name = name;
+        this.categoryId= categoryId;
+        this.subcategoryIds= subcategoryIds;
     }
 
     public Category(String name) {
