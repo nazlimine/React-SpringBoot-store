@@ -1,54 +1,54 @@
 
-import React, {Component} from 'react';
-import { Nav, Navbar,Dropdown } from 'rsuite';
+import React,  {useState, useEffect } from 'react';
+import { Nav, Navbar} from 'rsuite';
 import {Link} from 'react-router-dom';
 import CustomSearch from './search';
 import axios from 'axios';
-import "./assets/styles.scss";
+import "./assets/styles/header.scss";
 
-export class NavbarBootstrap extends Component{
+export const CustomNavbar = () => {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            allCategories: []
-        }
-    }
-    componentDidMount(){
+    const [allCategories,setAllCategories] = useState([]);
+
+    useEffect(() => {
+        getAllCategories();
+     }, []);
+
+    const getAllCategories = () => {
         const headers = {
             "Content-Type": "application/json",
           };
         
         axios.get('http://localhost:8080/categories', { headers })
-        .then(response => {this.setState({ allCategories: response.data });
-        console.log(response)});
+        .then(response => {setAllCategories(response?.data)})
     }
-  
-    render(){
 
-        return (
+    return (
            <Navbar appearance="subtle">
-               <Navbar.Brand  href="home"><img src={require("./assets/logo.png")}></img></Navbar.Brand>
-               <Nav.Item>
-                <Dropdown title="All Categories">
-                    { this.state.allCategories.map(item => <Dropdown.Item key={item.id}> { item.name} </Dropdown.Item> )}                
-                </Dropdown>
+             <Nav>
+                { allCategories.map(item => 
+                    <Nav.Item key={item.id}>
+                        <Link to={`category/${item.id}`} end>{ item.name} </Link> 
+                    </Nav.Item>)
+                }
+            </Nav> 
+            <Nav>
+                <Nav.Item>
+                    <Link to="home">
+                        <img src={require("./assets/images/logo.png")}></img>
+                    </Link>
                 </Nav.Item>
-               
+            </Nav>
+            <Nav pullRight>
                 <Nav.Item>
                     <CustomSearch></CustomSearch>
                 </Nav.Item>
-                <Nav pullRight>
-                    <Nav.Item eventKey="user"><Link to="user">My Account</Link></Nav.Item>
-                    <Nav.Item to="cart" eventKey="news"><Link to="cart">Shopping Cart</Link></Nav.Item>
-               </Nav>
+                
+                <Nav.Item eventKey="login"><Link to="login">Login</Link></Nav.Item>
+                <Nav.Item to="cart" eventKey="news"><Link to="cart">Cart</Link></Nav.Item>
+            </Nav>
           </Navbar>
-
         );
-    }
-
-
-
 }
 
-export default NavbarBootstrap;
+export default CustomNavbar;

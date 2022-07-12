@@ -1,0 +1,24 @@
+.rs-navbar{
+    .rs-navbar-item{
+        padding: 40px;
+        overflow: unset;
+        font-size: large;
+       
+        img{
+            margin-left:250px;
+        }
+    }
+    .rs-ripple{
+        background-color: rgba(0,0,0,0);
+    }
+    .rs-input-group{
+        width:200px !important; 
+    }
+    .rs-navbar-brand{
+        img{
+           max-width:100%;
+           max-height:100%;
+        }
+    }
+}
+
