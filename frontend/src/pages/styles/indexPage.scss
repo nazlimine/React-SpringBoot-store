@@ -1,0 +1,63 @@
+.image-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;   
+    .content{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h1{
+            text-align: center;
+            color:white !important;
+        }
+        .rs-btn{
+        
+            width: 15%;
+            color:black;
+            background-color: white;
+            border-radius: 0px;
+        }
+        .image{
+            width:100%;
+        }
+    }
+
+}
+
+h1{
+
+    margin:15px !important;
+    color:black !important;
+    text-align: center;
+}
+
+.container{
+    padding: 0 10%;
+    .card-container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        padding: 20px 0 0 0;
+        display: grid;
+        grid-gap: 15px;
+        .card{
+
+            position: relative;
+            img{
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}
+
+
+
+

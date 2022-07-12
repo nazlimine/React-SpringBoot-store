@@ -1,67 +1,28 @@
 import './App.css';
-import NavbarBootstrap from './components/header';
-import { Container ,Content, Header,Sidebar} from 'rsuite';
-import CustomCarousel from './components/carousel';
-import CustomPanel from './components/panel';
-import CustomCard from './components/card';
-
-import { Routes, Route } from "react-router-dom";
+import Layout from './components/layout';
+import {Route,Routes} from "react-router-dom";
 import HomePage from './pages';
+import ItemPage from './pages/itemPage';
+import CategoryPage from './pages/categoryPage';
+import LoginPage from './pages/loginPage';
+import CheckoutPage from './pages/checkout';
 
 function App() {
   return (
     <div className="App">
-  
-      <Container>
-        <Header>
-          <NavbarBootstrap></NavbarBootstrap>
-        </Header>
         <Routes>
-            <Route path="/"    element={<Home />} />
-            <Route path="home" element={<Home />} />
-            <Route path="user" element={<User />} />
-            <Route path="cart" element={<Cart />} />
-        </Routes>
-       
-    </Container>
+          <Route path="/" element={<Layout/>}>
+            <Route index path="home" element={<HomePage/>}/>
+            <Route exact path="category/:categoryId" element={<CategoryPage />}/>
+            <Route  path="items/:itemId" element={<ItemPage/>}/>
+            <Route  path="login" element={<LoginPage/>}/>
+            <Route  path="cart" element={<CheckoutPage/>}/>
+          </Route>
+        </Routes>   
     </div>
   );
 }
 
-function Home() {
-  return (
-    <>
-      <HomePage></HomePage>
-    </>
-  );
-}
-
-function User() {
-  return (
-    <>
-      <Container>
-      <Content>
-        <CustomCarousel></CustomCarousel>
-        <CustomPanel></CustomPanel>
-      </Content>
-
-    </Container>
-    </>
-  );
-}
-
-function Cart() {
-  return (
-    <>
-    <Container>
-      <Content>
-        <CustomCarousel></CustomCarousel>
-      </Content>
-
-    </Container>
-    </>
-  );
-}
 
 
 export default App;

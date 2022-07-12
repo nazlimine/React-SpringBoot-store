@@ -9,12 +9,11 @@ export class CustomSearch extends Component{
 
         return(
             <InputGroup inside >
-            <Input />
-            <InputGroup.Button>
-              <SearchIcon />
-            </InputGroup.Button>
-          </InputGroup>
-
+              <Input />
+              <InputGroup.Button>
+                <SearchIcon />
+              </InputGroup.Button>
+            </InputGroup>
         );
     }
 }

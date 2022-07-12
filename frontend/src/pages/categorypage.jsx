@@ -1,47 +1,49 @@
-import React, {Component} from "react";
+import React, { useState, useEffect } from "react";
 import { Container ,Content} from 'rsuite';
-import CustomCarousel from '../components/carousel';
-import CustomPanel from '../components/panel';
-import CustomCard from '../components/card';
 import axios from 'axios';
+import {  useParams } from "react-router-dom";
+import "./styles/categoryPage.scss";
 
+export const CategoryPage = () => {
 
-export class HomePage extends Component{
+    const [category,setCategory] = useState([]);
 
-    constructor(props){
-        super(props);
-        this.state = {
-            allItems: []
-        }
-    }
-    componentDidMount(){
+    const id  = useParams();
+
+    useEffect(() => {
+        getCategory(id);
+     },[id]);
+
+    const getCategory = (id) => {
         const headers = {
-            "Content-Type": "application/json",
+            "Content-Type": "   application/json",
           };
         
-        axios.get('http://localhost:8080/items', { headers })
-        .then(response => {this.setState({ allItems: response.data });
-        console.log(response)});
+        axios.get('http://localhost:8080/category/'+id.categoryId, { headers })
+        .then(response => {
+            if(response.status==200  || response.status==304){
+                setCategory(response.data);
+            }
+            })
     }
-    render(){
 
-        return(
+    return(
             <Container>
-                <Content>
-                        <CustomPanel>
-                        </CustomPanel>
-                        <CustomCard 
-                            key={item.id}
-                            name={item.name}
-                            photo={item.photo}
-                            price={item.price}> 
-                        </CustomCard>   
-                </Content>
+                <Content className="container">
+                        <h1>All {category.name}</h1>
+                        <div className="card-container">
+                        {category.subcategories &&
+                                category.subcategories.map(item => 
+                                    <div className="card" >
+                                        <img src={item.photo} height="240" />
+                                        <h5 >{item.name}</h5>
+                                    </div>
+                        )}  
+                         </div>
+                   
+               </Content>
             </Container>
         )
-    }
-
-
 }
 
-export default HomePage;
+export default CategoryPage;

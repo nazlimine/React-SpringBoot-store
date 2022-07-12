@@ -1,5 +1,24 @@
 .App {
   text-align: center;
+  font-family: "GT Pressura Mono Regular",serif;
+}
+
+a{
+  color:black !important;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+a:hover{
+  color: black;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+a:focus{
+  color: black;
+  font-weight: 600;
+  text-decoration: none !important;
 }
 
 .App-logo {
