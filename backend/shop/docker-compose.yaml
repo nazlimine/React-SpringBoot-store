@@ -1,0 +1,30 @@
+version : "3.8"
+services:
+  mongodb:
+    image: mongo
+    container_name: shopdb
+    ports:
+      - 27017:27017
+    volumes:
+      - data:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=rootuser
+      - MONGO_INITDB_ROOT_PASSWORD=rootpassword
+  mongo-express:
+    image: mongo-express
+    container_name: shopdb-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpassword
+      - ME_CONFIG_MONGODB_SERVER=shopdb
+
+volumes:
+  data: {}
+
+networks:
+  default:
+    name: shopdb_network
+
